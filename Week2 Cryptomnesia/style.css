@@ -1,0 +1,16 @@
+/* Style the element with the id "myHeader" */
+#page-title {
+    font-size: 14px;
+    font-family:monospace;
+    margin-top: 16px; 
+    margin-left: 5px
+  }
+
+  #date-div{
+    font-family:monospace;
+    font-size: 11px;
+  }
+
+body {
+    background-color: white;
+}
