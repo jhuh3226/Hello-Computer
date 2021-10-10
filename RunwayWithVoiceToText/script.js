@@ -1,6 +1,9 @@
 const SpeechRecognition = webkitSpeechRecognition; //eslint-disable-line
 const gallery = document.getElementById('gallery');
+
 const imageIndexs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const altText = document.getElementById("altText");
+var description = "";
 
 const model = new rw.HostedModel({
     url: "https://attngan-63a75f28.hosted-models.runwayml.cloud/v1/",
@@ -41,27 +44,34 @@ const generate = (phrase) => {
         const { result } = outputs;
 
         // imageIndexs.forEach(i => {
-        const img = document.createElement('img');
+        var img = document.createElement('img')
         img.src = result;
         img.alt = phrase;
+        description = phrase;
         img.classList.add('galleryImg');
-        gallery.appendChild(img);
+        // append the gallery with soure of the memory image being result & dateStamp as convertedDate
+        gallery.append(img);
+        // document.querySelector('#memory').src = result;
         // });
-
-        // use the outputs in your project
-        // const img = document.createElement('img');
-        // img.src = result;
-        // document.getElementById('results').prepend(img);    // Adding AI imagined image
 
         // Adding date stamp
         var date = randomDate('01/01/2021', '02/26/1993');  // Change the latest date as today
         var convertedDate = document.createTextNode(date);
-        document.getElementById('dateStamp').appendChild(convertedDate);
+        // document.getElementById('dateStamp').appendChild(convertedDate);
+        // document.getElementById('dateStamp').textContent = date;
 
         // Adding alt text
         // document.getElementById('text-div').appendChild(phrase);
     });
 };
+
+
+// for (var i = 0; i < img.length; i++) {
+gallery.addEventListener("mouseover", function () {
+    console.log("mouse over");
+    altText.textContent = description;
+});
+// }
 
 // Create random date between two period
 // https://stackoverflow.com/questions/31378526/generate-random-date-between-two-dates-and-times-in-javascript?lq=1
