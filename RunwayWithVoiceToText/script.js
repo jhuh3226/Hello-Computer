@@ -45,8 +45,7 @@ const generate = (phrase) => {
         img.src = result;
         img.alt = phrase;
         img.classList.add('galleryImg');
-        memory.appendChild(img);
-        // gallery.appendChild(img);
+        gallery.appendChild(img);
         // });
 
         // use the outputs in your project
