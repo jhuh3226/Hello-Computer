@@ -10,40 +10,31 @@ h1{
 }
 
 .container{
-    /* max-width:1920px;
+    max-width:1920px;
     padding:20px 20px;
-    margin: 0 auto; */
-    display: grid;
+    margin: 0 auto;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(256px, 256px));
-    grid-gap:10px;
+    grid-gap:10px; */
 }
 
-#dateStamp{
-    /* display: grid; */
-    /* grid-template-columns: repeat(auto-fit, minmax(256px, 256px)); */
+#dateStamp, #altText{
     font-size: 14px;
     padding-top: 8px;
 }
 
-#galleryItem{
-    width:100%;
-    height:100%;
-    position:relative;
+#gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(256px, 256px));
+    grid-gap: 10px;
 }
 
-.galleryItem.memory{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    border-radius: 2px;
-}
-
-/* .galleryImg{
+.galleryImg{
     max-width: 100%;
     border-radius: 2px;
     position: relative;
     transition: transform 250ms;
-} */
+}
 
 .galleryImg:hover{
     transform: translateY(-2px);
