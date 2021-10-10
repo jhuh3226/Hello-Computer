@@ -4,20 +4,21 @@
 <head>
     <title>It's my childhood not yours</title>
     <!-- This example links to a style sheet located in the same folder as the current page: -->
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <!-- include this in your HTML file -->
     <script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"></script>
-    <script src="./script.js"></script>
 </head>
 
 <body>
-    <div id="page-title">It's my childhood not yours</div>
-    <br>
+    <h1>It's my childhood not yours</h1>
+    <div class="container">
+        <div id="gallery">
+            <div id="memory"></div>
+            <div id="dateStamp"></div>
+        </div>
+    </div>
 
-    <!-- <input id="memory" placeholder="type a memory">
-    <button id="generateButton" onclick="generate()">Create</button> -->
-    <table id="results">
-
+    <!-- <table id="results">
         <tr>
             <td id="the-img">
                 <div id="image-div"><img id="img" src=""></div>
@@ -32,7 +33,7 @@
             <td id="text-div"></td>
         </tr>
 
-    </table>
+    </table> -->
 
     <!-- <div class="parent">
         <div class="div1"> </div>
@@ -50,7 +51,7 @@
         <div class="div13"> </div>
         <div class="div14"> </div>
     </div> -->
-
+    <script src="./script.js"></script>
 </body>
 
 </html>
