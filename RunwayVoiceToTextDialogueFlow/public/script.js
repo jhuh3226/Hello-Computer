@@ -1,5 +1,5 @@
 console.log("hello");
-const socket = io.connect();
+const socket = io.connect();    // Installing socket io in client side 
 
 const SpeechRecognition = webkitSpeechRecognition;
 const synth = window.speechSynthesis;
@@ -80,8 +80,16 @@ const generate = (phrase) => {
         // Append to gallery
         gallery.appendChild(newDiv);
     });
+
+    // Send what they said to the server
+    // "Name of the event"
+    // query: data I am sending
+    socket.emit("send to dialogflow", { query: caption });
 };
 
+socket.on("response", (data) => {
+	console.log(data);
+});
 
 // for (var i = 0; i < img.length; i++) {
 gallery.addEventListener("mouseover", function () {

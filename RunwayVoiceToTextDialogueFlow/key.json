@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "falsememorysyndrome-ynjr",
+  "private_key_id": "288c68b18eeb6517c3d8041f792a2533e7a4b369",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCi3QzbWQYoiKGq\nK0WVHYy6DvqAN3p4vmS0zVDIwFbvkNsGFMplRGh0uUaIX6Ql2sr/T4pqFfi20A/H\nvMhKHIscnKjXKQvQvuLUaD7hoCUo1s4fITEzP7hcWzKZ0ztIrn+SxPHMX7oNj7QD\nJKM7FggcYFi0RqF22lGnfIertv6tBIAsoexjOaysRipFAFodJuMY0dKct+vtr8q3\nOdfdgAcFxIINdcxKwJvEHJa8LiYX9KJXwK4LMHS2wW/jdDtzLq5TTsBnJX9Ostyj\nUZFgrNR+wKPvv1SOrytLOuf7eStWWB1mfn1H8EeA7XedkeeaMzU5MayiU4qPIEvz\na4RNyVLhAgMBAAECggEAHdNhoWICULYE9UcLbS2GMiTAF28RjL9BbiMTolAnG6Rp\nmAmCr10BzC6KDjuFsjEJcAw/CwKPE9uyqB+YhooHp+vAt/aaZVYv8DpPGb7cT0hX\nYzgO7JXEy5UgBS+78amTT2ul5Im7ZvRkQRcalZ2JSrkSRaGRvFRrE8MojXfr1/9q\nNrOQC63RazQU5zEtxbaShcY0r7e1FyNR/qRlcxc7iBizyvnp9FJW4T85EI0Xnezc\nf0wTOxOnomk5oL3X1pI+bGkW3FraX7vgFAYBGzBHgqTXvsAq1yNDFMBi2tojtbO3\n9W7wTI04VOO01wvnZU8Wsw1kQ3TlbMKKsX1Zjo+1iQKBgQDOdZVu7o8BpfKrT83w\n5qfi1csnZrayztrL3mf/tGbZjewLztaIdrG/FrVsF5HI341uaeaFFYZj5f5nQLto\n2C6zgMSdup1VsJBsXemKRqCPqYoq2Uh47WC22CAefHMAzajbf7uasj3jlHzoDsWr\ndfz+SN6xa+7z3Q6AKJExCM2yZwKBgQDJ8XRZo0vl1JiETkSw/WkGvRonhcUOUJth\nhPFTPoqjhX3a+H7+ljzzjTxJfZ3aiEtWTzBoB0513+M9qYQgMcHNt6G94ZtCLVZb\n96Lfs5fAL0JzuKhk905Sfglu3GJ4LX2b43UUbAdZbVA7CH1ZFNgQlbabIAO7j48D\ndmLQQ4xTdwKBgQCYcQ2jWRXSe7uQbl57T3QK8x0LvLWNlVrMSS21CnkejcIKffC9\n1hYsKBJQ+54zGY2ORzdkcJ5ISNvtVUiLg4QIGj4S0GW3jaU1vqnf5YJMUTyposH2\nOB+/IhmlKPKpVzEk0U2uTYmQ7mTD25Rso7Pn9dooWq+W9FPuoQWDlSJ8ZQKBgBia\ny7NUOx4gngiYxLPP3GkOx04DdXP+DECAgyrCVv//dsskNcztHzYJgkvt+zqyGoPE\nmEBEi6G/Cp/rtIZ7qYJYGmPZRiJ1Ba2k6XpaFmY7G9yfphzPKQLSCnIwderwl/pT\nZ2N6mhaiRAE9UpB1ArJam2ohJ3NF1YX1eaqoYEOXAoGAYzdGAzInDfIDr08Q23uK\nhJtCWs8CZ0dIOtSdRjPjTVJGxhdanLq+EXmYA9i7QB1tVkO3xxzyWEnzDd1bvuAl\no9g0DDcAYh8VXYGoTbCNqUFShPPZNqRrIW07YEHymRKFpGkH8u5PHEsYk8opZ0iA\nEwTr+eT+dSnNb5RHWt5dHpA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "jhuh3226@falsememorysyndrome-ynjr.iam.gserviceaccount.com",
+  "client_id": "105806228589739771618",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jhuh3226%40falsememorysyndrome-ynjr.iam.gserviceaccount.com"
+}
