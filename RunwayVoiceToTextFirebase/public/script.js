@@ -12,8 +12,8 @@ var galleryContent;
 var img = "";
 
 const model = new rw.HostedModel({
-    url: "https://attngan-63a75f28.hosted-models.runwayml.cloud/v1/",
-    token: "s0c3OdfZu6sxaZ8D88J6Eg==",
+    url: "https://attngan-e3fdb639.hosted-models.runwayml.cloud/v1/",
+    token: "bAUyBPwiMc8EbgwKfFaWnQ==",
 });
 
 const getSpeech = () => {
