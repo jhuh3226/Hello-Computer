@@ -12,8 +12,8 @@ var galleryContent;
 var img = "";
 
 const model = new rw.HostedModel({
-    url: "https://attngan-e3fdb639.hosted-models.runwayml.cloud/v1/",
-    token: "bAUyBPwiMc8EbgwKfFaWnQ==",
+    url: "https://attngan-8f348bb8.hosted-models.runwayml.cloud/v1/",
+    token: "A1qg4I5xpw/+5b8SuNTLmQ==",
 });
 
 const getSpeech = () => {
@@ -88,7 +88,10 @@ const generate = (phrase) => {
 };
 
 socket.on("response", (data) => {
-	console.log(data);
+    console.log(data.params);
+    console.log(data.text);
+
+    speak(data.text);
 });
 
 // for (var i = 0; i < img.length; i++) {

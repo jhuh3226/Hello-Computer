@@ -33,11 +33,11 @@ io.on("connection", (socket) => {
 				const result = response[0].queryResult;
 				console.log(result);
 
-				// let text = result.fulfillmentText;
-				// let params = result.parameters.fields;
-				// let intent = result.intent.displayName;
+				let text = result.fulfillmentText;
+				let params = result.parameters.fields;
+				let intent = result.intent.displayName;
 
-				// socket.emit("stuff from df", { text, params, intent });
+				socket.emit("stuff from df", { text, params, intent });
 			});
 	});
 });
