@@ -5,8 +5,11 @@ const SpeechRecognition = webkitSpeechRecognition;
 const synth = window.speechSynthesis;
 
 const imageIndexs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const altText = document.getElementById("altText");
+const descrip = document.getElementById("descrip");
+
 var description = "";
+var galleryContent;
+var img = "";
 
 const model = new rw.HostedModel({
     url: "https://attngan-63a75f28.hosted-models.runwayml.cloud/v1/",
@@ -37,8 +40,6 @@ const getSpeech = () => {
 };
 
 const generate = (phrase) => {
-    // console.log("generate image");
-    // const caption = document.getElementById('memory').value;
     const caption = phrase;
     const inputs = {
         "caption": caption
@@ -46,33 +47,46 @@ const generate = (phrase) => {
     model.query(inputs).then(outputs => {
         const { result } = outputs;
 
-        // imageIndexs.forEach(i => {
-        var img = document.createElement('img')
+        /* Third way */
+        var newDiv = document.createElement('div');
+
+        // Date Stamp
+        var dateDiv = document.createElement('dateDiv');
+        dateDiv.classList.add('date');
+        var datePool = randomDate('01/01/2021', '02/26/1993');  // Change the latest date as today
+        var date = document.createTextNode(datePool);
+        dateDiv.appendChild(date);
+        newDiv.appendChild(dateDiv);
+
+        // Image
+        img = document.createElement("img");
         img.src = result;
         img.alt = phrase;
-        description = phrase;
         img.classList.add('galleryImg');
-        // append the gallery with soure of the memory image being result & dateStamp as convertedDate
-        gallery.append(img);
-        // document.querySelector('#memory').src = result;
-        // });
+        newDiv.appendChild(img);
 
-        // Adding date stamp
-        var date = randomDate('01/01/2021', '02/26/1993');  // Change the latest date as today
-        var convertedDate = document.createTextNode(date);
-        // document.getElementById('dateStamp').appendChild(convertedDate);
-        // document.getElementById('dateStamp').textContent = date;
+        // Hover text
+        var hoverText = document.createElement('hoverText');
+        hoverText.classList.add('altText');
+        var text = document.createTextNode(phrase);
+        hoverText.appendChild(text);
+        newDiv.appendChild(hoverText);
 
-        // Adding alt text
-        // document.getElementById('text-div').appendChild(phrase);
+        img.addEventListener('click', () => {
+            console.log(phrase);
+            descrip.textContent = phrase;
+        });
+
+        // Append to gallery
+        gallery.appendChild(newDiv);
     });
 };
 
 
 // for (var i = 0; i < img.length; i++) {
 gallery.addEventListener("mouseover", function () {
-    console.log("mouse over");
-    altText.textContent = description;
+    // console.log("mouse over");
+    // altText.textContent = description;
 });
 // }
 
