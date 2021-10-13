@@ -67,3 +67,4 @@ node_modules/
 
 # Google cloud key
 *.json
+.key2.json
