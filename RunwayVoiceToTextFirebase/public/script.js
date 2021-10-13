@@ -10,11 +10,21 @@ const descrip = document.getElementById("descrip");
 var description = "";
 var galleryContent;
 var img = "";
+var aiSpeak = false;
 
+// Runway
 const model = new rw.HostedModel({
     url: "https://attngan-8f348bb8.hosted-models.runwayml.cloud/v1/",
     token: "A1qg4I5xpw/+5b8SuNTLmQ==",
 });
+
+// Speech synthesis
+const speak = (text) => {
+    if (aiSpeak) {
+        let utterThis = new SpeechSynthesisUtterance(text);
+        synth.speak(utterThis);
+    }
+};
 
 const getSpeech = () => {
     const recognition = new SpeechRecognition();
@@ -70,11 +80,12 @@ const generate = (phrase) => {
         hoverText.classList.add('altText');
         var text = document.createTextNode(phrase);
         hoverText.appendChild(text);
-        newDiv.appendChild(hoverText);
+        // newDiv.appendChild(hoverText);
 
         img.addEventListener('click', () => {
             console.log(phrase);
-            descrip.textContent = phrase;
+            // descrip.textContent = phrase;
+            speak(phrase);
         });
 
         // Append to gallery
@@ -88,7 +99,11 @@ const generate = (phrase) => {
 };
 
 socket.on("response", (data) => {
-    console.log(data.params);
+    console.log(data);
+});
+
+// receive from server
+socket.on("stuff from df", (data) => {
     console.log(data.text);
 
     speak(data.text);
@@ -126,4 +141,9 @@ function randomDate(date1, date2) {
 window.onload = () => {
     console.log("page loaded");
     getSpeech();
+};
+
+document.querySelector("#my-button").onclick = () => {
+    // getSpeech();
+    aiSpeak = true;
 };
