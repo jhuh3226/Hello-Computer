@@ -60,39 +60,45 @@ const generate = (phrase) => {
     model.query(inputs).then(outputs => {
         const { result } = outputs;
 
-        /* Third way */
-        var newDiv = document.createElement('div');
+        const keywords = ["young", "child", "kid", "memory", "memories", "childhood", "remember", "memorize", "memorized", "little girl", "little boy"]
 
-        // Date Stamp
-        var dateDiv = document.createElement('dateDiv');
-        dateDiv.classList.add('date');
-        var datePool = randomDate('01/01/2021', '02/26/1993');  // Change the latest date as today
-        var date = document.createTextNode(datePool);
-        dateDiv.appendChild(date);
-        newDiv.appendChild(dateDiv);
+        // Add new photo only when keywords are detected
+        if (keywords.some(keyword => phrase.includes(keyword))) {
+            console.log("found the keyword");
 
-        // Image
-        img = document.createElement("img");
-        img.src = result;
-        img.alt = phrase;
-        img.classList.add('galleryImg');
-        newDiv.appendChild(img);
+            var newDiv = document.createElement('div');
 
-        // Hover text
-        var hoverText = document.createElement('hoverText');
-        hoverText.classList.add('altText');
-        var text = document.createTextNode(phrase);
-        hoverText.appendChild(text);
-        // newDiv.appendChild(hoverText);
+            // Date Stamp
+            var dateDiv = document.createElement('dateDiv');
+            dateDiv.classList.add('date');
+            var datePool = randomDate('01/01/2021', '02/26/1993');  // Change the latest date as today
+            var date = document.createTextNode(datePool);
+            dateDiv.appendChild(date);
+            newDiv.appendChild(dateDiv);
 
-        img.addEventListener('click', () => {
-            console.log(phrase);
-            // descrip.textContent = phrase;
-            speak(phrase);
-        });
+            // Image
+            img = document.createElement("img");
+            img.src = result;
+            img.alt = phrase;
+            img.classList.add('galleryImg');
+            newDiv.appendChild(img);
 
-        // Append to gallery
-        gallery.appendChild(newDiv);
+            // Hover text
+            var hoverText = document.createElement('hoverText');
+            hoverText.classList.add('altText');
+            var text = document.createTextNode(phrase);
+            hoverText.appendChild(text);
+            // newDiv.appendChild(hoverText);
+
+            img.addEventListener('click', () => {
+                console.log(phrase);
+                // descrip.textContent = phrase;
+                speak(phrase);
+            });
+
+            // Append to gallery
+            gallery.appendChild(newDiv);
+        }
     });
 
     // Send what they said to the server
