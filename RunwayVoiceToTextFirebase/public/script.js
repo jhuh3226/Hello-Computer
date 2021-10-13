@@ -13,6 +13,7 @@ const descrip = document.getElementById("descrip");
 var description = "";
 var galleryContent;
 var img = "";
+var imgCount = 0;
 var aiSpeak = false;
 
 // Runway
@@ -82,6 +83,7 @@ const generate = (phrase) => {
             img.alt = phrase;
             img.classList.add('galleryImg');
             newDiv.appendChild(img);
+            imgCount++; // Count the images in photo album
 
             // Hover text
             var hoverText = document.createElement('hoverText');
@@ -106,6 +108,11 @@ const generate = (phrase) => {
     // query: data I am sending
     socket.emit("send to dialogflow", { query: caption });
 };
+
+/* If the number of photos go over _, aler the user */
+if (imgCount > 3) {
+    console.log("Aler the user");
+}
 
 socket.on("response", (data) => {
     console.log(data);
