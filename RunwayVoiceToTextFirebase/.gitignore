@@ -70,4 +70,4 @@ node_modules/
 .key2.json
 
 # File that stores token for Runway
-*.config.js
+.config
