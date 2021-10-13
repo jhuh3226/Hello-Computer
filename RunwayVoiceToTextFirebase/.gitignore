@@ -68,3 +68,6 @@ node_modules/
 # Google cloud key
 *.json
 .key2.json
+
+# File that stores token for Runway
+.config.js
