@@ -1,3 +1,5 @@
+const {config} = require('./config.js');  // Get token code
+
 console.log("hello");
 const socket = io.connect();    // Installing socket io in client side 
 
@@ -15,7 +17,7 @@ var aiSpeak = false;
 // Runway
 const model = new rw.HostedModel({
     url: "https://attngan-8f348bb8.hosted-models.runwayml.cloud/v1/",
-    token: "A1qg4I5xpw/+5b8SuNTLmQ==",
+    token: config.token
 });
 
 // Speech synthesis
