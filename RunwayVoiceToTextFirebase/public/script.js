@@ -1,11 +1,12 @@
-const {config} = require('./config.js');  // Get token code
+// import { config } from './config.js' // Get token code
+// const {config} = require('./config.js');  // Get token code
 
 console.log("hello");
 const socket = io.connect();    // Installing socket io in client side 
 
 const SpeechRecognition = webkitSpeechRecognition;
 const synth = window.speechSynthesis;
-
+// 
 const imageIndexs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const descrip = document.getElementById("descrip");
 
