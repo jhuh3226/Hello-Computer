@@ -173,5 +173,31 @@ h1{
     z-index: 999;
 }
 
+.blocked{
+    position: absolute;
+    top:40%;
+    left: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    justify-content: center;
+}
+
+.blocked a{
+    font-size: 14px;
+}
+
+#blockedMainText{
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.error{
+    width: 60px;
+    height: auto;
+    padding-bottom: 40px;
+}
+
 /* placing z on top of each other */
 /* place the text same place by putting the same div */

@@ -12,6 +12,7 @@ const googlePhotoButton = document.getElementById("googlePhotoButton");
 const sidenav = document.getElementsByClassName("sidenav");
 const bg = document.getElementsByClassName("bg");
 const container = document.getElementsByClassName("container");
+const blocked = document.getElementsByClassName("blocked");
 
 var alarm = new Audio('assets/alarm.mp3');
 
@@ -20,6 +21,7 @@ var galleryContent;
 var img = "";
 var imgCount = 0;
 var aiSpeak = false;
+var accessBlocked = false;
 
 // Show and Hide html element
 // Class ruetuns array of elements so has to go through the array, with the ID you can ignore making arrays
@@ -31,13 +33,18 @@ googlePhotoButton.addEventListener('click', () => {
         x.style.display = "none";
     })
 
-    // Show both sidenav and container
-    Array.from(sidenav).forEach((x) => {
-        x.style.display = "block";
-    })
-    Array.from(container).forEach((x) => {
-        x.style.display = "block";
-    })
+    if (!accessBlocked) {
+        // Show both sidenav and container
+        Array.from(sidenav).forEach((x) => {
+            x.style.display = "block";
+        })
+        Array.from(container).forEach((x) => {
+            x.style.display = "block";
+        })
+    }
+
+    let utterThis = new SpeechSynthesisUtterance("Oh, Hey!");
+    synth.speak(utterThis);
 
     aiSpeak = true;
 });
@@ -49,6 +56,23 @@ const hideSideBarWithContainer = () => {
     })
     Array.from(container).forEach((x) => {
         x.style.display = "none";
+    })
+
+    Array.from(blocked).forEach((x) => {
+        x.style.display = "none";
+    })
+};
+
+const accessBlockedScreen = () => {
+    Array.from(sidenav).forEach((x) => {
+        x.style.display = "none";
+    })
+    Array.from(container).forEach((x) => {
+        x.style.display = "none";
+    })
+
+    Array.from(blocked).forEach((x) => {
+        x.style.display = "block";
     })
 };
 
@@ -98,7 +122,7 @@ const generate = (phrase) => {
     model.query(inputs).then(outputs => {
         const { result } = outputs;
 
-        const keywords = ["young", "child", "kid", "memory", "memories", "childhood", "remember", "memorize", "memorized", "little girl", "little boy", "old days"]
+        const keywords = ["young", "child", "kid", "memory", "memories", "childhood", "remember", "memorize", "memorized", "little girl", "little boy", "old days", "age of diaper", "dad", "parents", "little baby", "when I was little", "when I was baby", "grew up", "grow up", "used to", "home town", "four years old", "years old", "growing up", "mom", "grandma", "grandpa"]
 
         // Add new photo only when keywords are detected
         if (keywords.some(keyword => phrase.includes(keyword))) {
@@ -158,9 +182,17 @@ socket.on("response", (data) => {
 
 // receive from server
 socket.on("stuff from df", (data) => {
-    console.log(data.text);
+    // Speak this only after user clicked the 'move to google photo button'
+    if (aiSpeak) {
+        console.log(data.text);
+        speak(data.text);
 
-    speak(data.text);
+        if (data.text == "I shouldn't have shared it with you. Bye.") {
+            console.log("Block access");
+            accessBlocked = true;
+            accessBlockedScreen();
+        }
+    }
 });
 
 gallery.addEventListener("mouseover", function () {
