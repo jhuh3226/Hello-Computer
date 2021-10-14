@@ -1,13 +1,12 @@
 // import { config } from './config.js' // Get token code
 // const {config} = require('./config.js');  // Get token code
 
-console.log("hello");
+console.log("Page loaded, hello");
 const socket = io.connect();    // Installing socket io in client side 
 
 const SpeechRecognition = webkitSpeechRecognition;
 const synth = window.speechSynthesis;
 
-const imageIndexs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const descrip = document.getElementById("descrip");
 const googlePhotoButton = document.getElementById("googlePhotoButton");
 const sidenav = document.getElementsByClassName("sidenav");
@@ -53,10 +52,10 @@ const hideSideBarWithContainer = () => {
     })
 };
 
-// Runway
+// Runway authen
 const model = new rw.HostedModel({
     url: "https://attngan-8f348bb8.hosted-models.runwayml.cloud/v1/",
-    token: config.token
+    token: config.token     // Get the token from config.js-this is git-ignored file
 });
 
 // Speech synthesis
@@ -90,6 +89,7 @@ const getSpeech = () => {
     };
 };
 
+// Generate runway image in 'container' div
 const generate = (phrase) => {
     const caption = phrase;
     const inputs = {
@@ -163,12 +163,10 @@ socket.on("stuff from df", (data) => {
     speak(data.text);
 });
 
-// for (var i = 0; i < img.length; i++) {
 gallery.addEventListener("mouseover", function () {
     // console.log("mouse over");
     // altText.textContent = description;
 });
-// }
 
 // Create random date between two period
 // https://stackoverflow.com/questions/31378526/generate-random-date-between-two-dates-and-times-in-javascript?lq=1
@@ -188,9 +186,6 @@ function randomDate(date1, date2) {
     }
 }
 
-//// You can use the info() method to see what type of input object the model expects
-// model.info().then(info => console.log(info));
-
 // Don't know why but 'document.onload' does not work
 window.onload = () => {
     console.log("page loaded");
@@ -198,10 +193,15 @@ window.onload = () => {
     hideSideBarWithContainer();
 };
 
-// document.querySelector("#my-button").onclick = () => {
-// };
-
 // Need this to play the alert sound
+// play() failed because the user didn't interact with the document first
 // https://developer.chrome.com/blog/autoplay/#iframe-delegation
 document.body.addEventListener("click", function () {
 })
+
+
+// You can use the info() method to see what type of input object the model expects
+// model.info().then(info => console.log(info));
+
+// document.querySelector("#my-button").onclick = () => {
+// };
