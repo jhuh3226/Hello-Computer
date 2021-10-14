@@ -8,6 +8,8 @@ const SpeechRecognition = webkitSpeechRecognition;
 const synth = window.speechSynthesis;
 
 const descrip = document.getElementById("descrip");
+const popup = document.getElementById("popup");
+const selectedImage = document.getElementById('selectedImage');
 const googlePhotoButton = document.getElementById("googlePhotoButton");
 const sidenav = document.getElementsByClassName("sidenav");
 const bg = document.getElementsByClassName("bg");
@@ -133,18 +135,20 @@ const generate = (phrase) => {
             // Date Stamp
             var dateDiv = document.createElement('dateDiv');
             dateDiv.classList.add('date');
-            var datePool = randomDate('01/01/2021', '02/26/1993');  // Change the latest date as today
+            var datePool = randomDate('10/01/2021', '02/26/1993');  // Change the latest date as today
             var date = document.createTextNode(datePool);
             dateDiv.appendChild(date);
             newDiv.appendChild(dateDiv);
 
-            // Image
-            imgCount++; // Count the images in photo album
-            img = document.createElement("img");
-            img.src = result;
-            img.alt = phrase;
-            img.classList.add('galleryImg');
-            newDiv.appendChild(img);
+            // Create image only when it is not talking to the user
+            if (!aiSpeak) {
+                imgCount++; // Count the images in photo album
+                img = document.createElement("img");
+                img.src = result;
+                img.alt = phrase;
+                img.classList.add('galleryImg');
+                newDiv.appendChild(img);
+            }
 
             // If the number of photos go over _, alert the user
             if (imgCount > 3 && !aiSpeak) {
@@ -163,6 +167,10 @@ const generate = (phrase) => {
                 console.log(phrase);
                 // descrip.textContent = phrase;
                 speak(phrase);
+
+                // Popup stuff
+                popup.style.transform = 'translateY(0)';
+                selectedImage.src = result;
             });
 
             // Append to gallery
@@ -175,6 +183,11 @@ const generate = (phrase) => {
     // query: data I am sending
     socket.emit("send to dialogflow", { query: caption });
 };
+
+popup.addEventListener('click', () => {
+    popup.style.transform = 'translateY(-100%)';
+    popup.src = '';
+});
 
 socket.on("response", (data) => {
     console.log(data);
