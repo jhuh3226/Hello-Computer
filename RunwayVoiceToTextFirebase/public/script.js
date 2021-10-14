@@ -6,15 +6,52 @@ const socket = io.connect();    // Installing socket io in client side
 
 const SpeechRecognition = webkitSpeechRecognition;
 const synth = window.speechSynthesis;
-// 
+
 const imageIndexs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const descrip = document.getElementById("descrip");
+const googlePhotoButton = document.getElementById("googlePhotoButton");
+const sidenav = document.getElementsByClassName("sidenav");
+const bg = document.getElementsByClassName("bg");
+const container = document.getElementsByClassName("container");
+
+var alarm = new Audio('assets/alarm.mp3');
 
 var description = "";
 var galleryContent;
 var img = "";
 var imgCount = 0;
 var aiSpeak = false;
+
+// Show and Hide html element
+// Class ruetuns array of elements so has to go through the array, with the ID you can ignore making arrays
+googlePhotoButton.addEventListener('click', () => {
+    console.log("Clicked google photo button");
+
+    googlePhotoButton.style.display = "none";
+    Array.from(bg).forEach((x) => {
+        x.style.display = "none";
+    })
+
+    // Show both sidenav and container
+    Array.from(sidenav).forEach((x) => {
+        x.style.display = "block";
+    })
+    Array.from(container).forEach((x) => {
+        x.style.display = "block";
+    })
+
+    aiSpeak = true;
+});
+
+// Hide sidebar and container unless user clicks 'Move to google photo'
+const hideSideBarWithContainer = () => {
+    Array.from(sidenav).forEach((x) => {
+        x.style.display = "none";
+    })
+    Array.from(container).forEach((x) => {
+        x.style.display = "none";
+    })
+};
 
 // Runway
 const model = new rw.HostedModel({
@@ -61,7 +98,7 @@ const generate = (phrase) => {
     model.query(inputs).then(outputs => {
         const { result } = outputs;
 
-        const keywords = ["young", "child", "kid", "memory", "memories", "childhood", "remember", "memorize", "memorized", "little girl", "little boy"]
+        const keywords = ["young", "child", "kid", "memory", "memories", "childhood", "remember", "memorize", "memorized", "little girl", "little boy", "old days"]
 
         // Add new photo only when keywords are detected
         if (keywords.some(keyword => phrase.includes(keyword))) {
@@ -78,12 +115,18 @@ const generate = (phrase) => {
             newDiv.appendChild(dateDiv);
 
             // Image
+            imgCount++; // Count the images in photo album
             img = document.createElement("img");
             img.src = result;
             img.alt = phrase;
             img.classList.add('galleryImg');
             newDiv.appendChild(img);
-            imgCount++; // Count the images in photo album
+
+            // If the number of photos go over _, alert the user
+            if (imgCount > 3 && !aiSpeak) {
+                console.log("AI wans to show the album with " + imgCount + " images");
+                alarm.play();
+            }
 
             // Hover text
             var hoverText = document.createElement('hoverText');
@@ -108,11 +151,6 @@ const generate = (phrase) => {
     // query: data I am sending
     socket.emit("send to dialogflow", { query: caption });
 };
-
-/* If the number of photos go over _, aler the user */
-if (imgCount > 3) {
-    console.log("Aler the user");
-}
 
 socket.on("response", (data) => {
     console.log(data);
@@ -153,13 +191,17 @@ function randomDate(date1, date2) {
 //// You can use the info() method to see what type of input object the model expects
 // model.info().then(info => console.log(info));
 
-// why dosen't document.onload work?
+// Don't know why but 'document.onload' does not work
 window.onload = () => {
     console.log("page loaded");
     getSpeech();
+    hideSideBarWithContainer();
 };
 
-document.querySelector("#my-button").onclick = () => {
-    // getSpeech();
-    aiSpeak = true;
-};
+// document.querySelector("#my-button").onclick = () => {
+// };
+
+// Need this to play the alert sound
+// https://developer.chrome.com/blog/autoplay/#iframe-delegation
+document.body.addEventListener("click", function () {
+})

@@ -9,8 +9,9 @@ const projectId = "falsememorysyndrome2-eugw";
 
 app.use(express.static("public"));
 
-const server = app.listen(5004, () => {
-	console.log("listening on port 5004!!!!!!");
+// It was originally 5004
+const server = app.listen(3000, () => {
+	console.log("listening on port 3000!!!!!!");
 });
 
 const io = socketIO(server);
