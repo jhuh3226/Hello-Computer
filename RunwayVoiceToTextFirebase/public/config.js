@@ -1,5 +1,5 @@
 var config = {
-    token: "A1qg4I5xpw/+5b8SuNTLmQ=="
+    token: "Y6gbZb/r9naeP2J6JDVXWw=="
 }
 
 // module.exports = {config};

@@ -80,7 +80,7 @@ const accessBlockedScreen = () => {
 
 // Runway authen
 const model = new rw.HostedModel({
-    url: "https://attngan-8f348bb8.hosted-models.runwayml.cloud/v1/",
+    url: "https://attngan-ad4b7fe7.hosted-models.runwayml.cloud/v1/",
     token: config.token     // Get the token from config.js-this is git-ignored file
 });
 
@@ -151,7 +151,7 @@ const generate = (phrase) => {
             }
 
             // If the number of photos go over _, alert the user
-            if (imgCount > 3 && !aiSpeak) {
+            if (imgCount > 28 && !aiSpeak) {
                 console.log("AI wans to show the album with " + imgCount + " images");
                 alarm.play();
             }
@@ -173,8 +173,12 @@ const generate = (phrase) => {
                 selectedImage.src = result;
             });
 
+            // Add 'speak to machine' to avoid feeding in again
+
             // Append to gallery
-            gallery.appendChild(newDiv);
+            if (!aiSpeak) {
+                gallery.appendChild(newDiv);
+            }
         }
     });
 

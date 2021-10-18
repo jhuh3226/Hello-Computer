@@ -7,10 +7,14 @@ body{
 /* Add a black background color to the top navigation */
 .topnav {
     /* background-color: #333; */
+    position: fixed;
+    top: 0;
     width: 100%;  /* Assuming full width */
     height: 80px; /* Change it to desired width */
+    background: white;
     overflow: hidden;
     border-bottom: 0.1px solid #c5c5c5;
+    z-index: 500;
 }
 
 /* Style the links inside the navigation bar */
@@ -48,8 +52,9 @@ body{
 
 /* https://www.w3schools.com/howto/howto_css_full_page.asp */
 .bg {
+    margin-top: 80px;
     /* The image used */
-    background-image: url("assets/googlePhotoBG.jpeg");
+    background-image: url("assets/googlePhotoBG2.jpg");
   
     /* Full height */
     /* height: 90%;  */
@@ -127,7 +132,7 @@ h1{
 }
 
 .container{
-    margin:0px 0px 0px 200px; /* Same as the width of the sidebar */
+    margin:80px 0px 0px 200px; /* Same as the width of the sidebar */
     /* margin-left: 160px; Same as the width of the sidebar */
     max-width:1920px;
     padding:30px 20px;
@@ -170,7 +175,7 @@ h1{
 .galleryImg:hover{
     background:rbg(0,0,0,0.6);
     transform: translateY(-3px);
-    z-index: 999;
+    z-index: 400;
 }
 
 #popup{
